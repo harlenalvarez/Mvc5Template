@@ -1,0 +1,120 @@
+﻿.sidenav-wrapper {
+    width: 3.5em;
+    line-height: 2em;
+    background-color: @sidenav-bg-color;
+    overflow: hidden;
+    color: @sidenav-color;
+    padding: 0;
+    white-space: nowrap;
+    transition: width .5s, margin-right .5s;
+    -webkit-transition: width .5s, margin-right .5s;
+    -moz-transition: width .5s, margin-right .5s;
+    -o-transition: width .5s, margin-right .5s;
+    transform: translateZ(0px);
+    -webkit-transform: translateZ(0px);
+    -moz-transform: translateZ(0px);
+    position: relative;
+    z-index: 2;
+
+    &.sidenav-full {
+        width: 20em;
+        transition: width .5s, margin-right .5s;
+        -webkit-transition: width .5s, margin-right .5s;
+        -moz-transition: width .5s, margin-right .5s;
+        -o-transition: width .5s, margin-right .5s;
+        margin-right: -16.5em;
+    }
+
+    button {
+        position: relative;
+        padding: .5em;
+        margin: .5em;
+        background-color: transparent;
+        background-image: none;
+        border: 1px solid @sidenav-color;
+        border-radius: 4px;
+        color: @sidenav-color;
+
+        .icon-bar {
+            background-color: @sidenav-color;
+            display: block;
+            width: 1.5em;
+            height: .15em;
+            border-radius: 1px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        .icon-bar + .icon-bar {
+            margin-top: 4px;
+        }
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            cursor: pointer;
+            text-align: left;
+            padding: 0.5em;
+            height: 3.5em;
+            background-color: @sidenav-item-bg-color;
+            border: solid 1px 0 @sidenav-item-border-color;
+            border-right-style: none;
+            border-left-style: none;
+            border-bottom-style: none;
+
+            &:first-child {
+                border-top-style: none;
+            }
+
+            &:hover {
+                background-color: @sidenav-item-hover-bg-color;
+                color: @sidenav-item-hover-color;
+            }
+
+            &.active-link {
+                color: @sidenav-active-link-color;
+                background-color: @sidenav-active-link-bg-color;
+            }
+
+            span {
+                cursor: pointer;
+                font-size: 2.5em;
+                margin: 0 .5em 0 0;
+                text-decoration: none;
+                vertical-align: middle;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+
+                &:hover {
+                    color: inherit;
+                }
+
+                &:active {
+                    color: inherit;
+                }
+            }
+        }
+    }
+
+    hr {
+        margin: 0;
+        border: 0;
+        border-top: 1px solid @sidenav-color;
+    }
+}

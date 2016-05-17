@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Javascripts</h2>
+<hr/>
+<div>
+    <h3>Start</h3>
+    <ol>
+        <li>Create App Foder -- Use this folder to store custom Javascipt files.</li>
+        <li>Create MainScript.js -- Use this javascript for every javascript you use.</li>
+        <li>Create script bundle for custom js bundles.</li>
+        <li>Add the following javascripts into mainScript.js (Most likely you will need them, and it uses data- attribute to keep javascript out of the view)</li>
+    </ol>
+</div>
+<div class="row">
+    <h2>Quicksearch</h2>
+    <p>Twitter Typeahead</p>
+    <hr/>
+    <div class="col-lg-8">
+        <ul class="nav nav-pills" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#html-typeahead" role="tab" data-toggle="tab">HTML</a>
+            </li>
+            <li role="presentation">
+                <a href="#js-typeahead" role="tab" data-toggle="tab">JS</a>
+            </li>
+            <li role="presentation">
+                <a href="#cs-typeahead" role="tab" data-toggle="tab">C#</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="html-typeahead">
+                <pre class="html">
+                    <code>
+&lt;input type='search' name='q' data-autocomplete-source='@@Url.Action(actionName:"QuickSearch",controllerName:"Home")'/&gt;
+                    </code>
+                </pre>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="js-typeahead">
+                <pre class="js">
+                     <code>
+$("input[data-autocomplete-source]").each(function () {
+    var target = $(this);
+    var dataval = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: {
+        url: target.attr("data-autocomplete-source") + "?q=%QUERY",
+        wildcard: "%QUERY"
+        }
+    });
+    target.typeahead({ highlight: true }, {
+        name: "q",
+        source:dataval
+    })
+});
+                     </code>
+                </pre>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="cs-typeahead">
+                <pre class="cs">
+                    <code>
+public ActionResult QuickSearch(string q)
+{
+    var foo = storeDB.Albums.Where(x => x.Artitst.Name.Contains(q)).ToList().Select(x => x.Artist.Name);
+    return Json(foo, JsonRequestBehavior.AllowGet);
+}
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <h3>Example</h3>
+        <label>Enter Search</label>
+        <input type="search" class="form-control" name="q" data-autocomplete-source="@Url.Action(actionName:"QuickSearch",controllerName:"Home")"/>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <h3>Tooltip</h3>
+    
+    <div class="col-lg-8">
+        <ul class="nav nav-pills" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#html-tooltip" data-toggle="tab" role="tab">HTML</a>
+            </li>
+            <li role="presentation">
+                <a href="#js-tooltip" data-toggle="tab" role="tab">JS</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade in active" role="tabpanel" id="html-tooltip">
+                <pre class="html">
+                    <code>
+&lt;input type='text' data-toggle='tooltip' title='This is a title' class='form-control'/&gt;
+                    </code>
+                </pre>
+            </div>
+            <div class="tab-pane fade" role="tabpanel" id="js-tooltip">
+                <pre class="js">
+                    <code>
+$('[data-toggle="tooltip"]').tooltip({
+    selector: '[data-toggle=tooltip]',
+    placement: 'right',
+    animated: 'fade',
+    template: '&lt;div class="tooltip" role="tooltip"&gt;&lt;div class="tooltip-arrow"&gt;&lt;/div&gt;&lt;div class="tooltip-inner"&gt;&lt;/div&gt;&lt;/div&gt;'
+    container: 'body'
+    trigger: 'hover',
+    'delay':{'show':'500','hide':'50'}
+});
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <input type="text" class="form-control" data-toggle="tooltip" title="This is a title" placeholder="Hover over me"/>
+    </div>
+</div>

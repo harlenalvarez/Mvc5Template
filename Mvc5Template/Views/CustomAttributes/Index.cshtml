@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Custom Attributes";
+}
+
+<h2>Custom Attributes</h2>
+<div class="row">
+    <div class="col-md-2">
+        <h2>Validators</h2>
+        @Html.ActionLink(linkText:"More Examples",actionName:"Validation",controllerName:"CustomAttributes")
+    </div>
+    <div class="col-md-2">
+        <h2>Start Up</h2>
+        <code>
+            public class  MaxWordsAttribute : ValidationAttribute
+            {
+                private readonly int _maxWords;
+                public MaxWordsAttrbute(int maxWords)
+                {
+                    _maxWords = maxWords;
+                }
+                
+                protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+                {
+                    retulr ValidationResult.Success;
+                }
+            }
+        </code>
+    </div>
+</div>
+

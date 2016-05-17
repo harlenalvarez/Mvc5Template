@@ -1,0 +1,5 @@
+﻿Instructions for settting up Scripts
+
+1.Create App folder to keep your custom javascript code.
+1.Get Typeahead from twitter and it will install typeahead and bloodhound.
+2.Get Handlebars for templating or Angular if this is a single page app.
