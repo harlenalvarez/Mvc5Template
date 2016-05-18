@@ -9,7 +9,6 @@
     //You get the idea
     //Use the controller name if link has drop downs for the parent and action name for the selected child
 }
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,10 +18,9 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/highlight")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
-    <div class="navbar navbar-inverse">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -43,7 +41,7 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
         <hr />
         <footer>

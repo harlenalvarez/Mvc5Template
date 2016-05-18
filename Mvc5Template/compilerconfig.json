@@ -4,7 +4,7 @@
     "inputFile": "Content/Less/site.less"
   },
   {
-    "outputFile":"Content/Css/bootstrap.css",
-    "inputFile":"Content/bootstrap/bootstrap.less"
+    "outputFile": "Content/Css/bootstrap.css",
+    "inputFile": "Content/bootstrap/bootstrap.less"
   }
 ]
