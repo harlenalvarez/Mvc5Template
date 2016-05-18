@@ -104,4 +104,70 @@
         }
     });
 
+
+
+
 });
+
+var displayFiles = function (files) {
+
+    var filename;
+    var filesize;
+    var innerHtml = "";
+    for (var index = 0; index < files.length; index++) {
+        filename = files[index].name;
+        filesize = files[index].size;
+        if (window.File && window.FileReader && window.FileList && window.Blob && filesize < 5000000) {
+            if (files && files[index]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    innerHtml = "";
+                    if (e.target.result.match(/application\/postscr/i)) {
+                        innerHtml = '<div class="epsPreview">EPS image: preview unavailable</div>';
+                    } else if (e.target.result.match(/image/i)) {
+                        innerHtml = "<img src='" + e.target.result + "' alt = '" + filename + "' style='max-height:100px'/>";
+                    }
+                    else if (e.target.result.match(/pdf/i)) {
+                        innerHtml = document.createElement("iframe");
+                        innerHtml.setAttribute("src", e.target.result);
+                        innerHtml.setAttribute("height", "150px");
+                        innerHtml.setAttribute("width", "100px");
+                        innerHtml.setAttribute("frameborder", "0");
+                        innerHtml.setAttribute("scrolling", "no");
+                    }
+                    else {
+                        innerHtml = "<div style='max-width:10em;'><p style='text-align:center;'><i class='fa fa-file-text-o fa-5x'></i><br/>" + filename + "</p></div>";
+                    }
+                    $("#DisplayFiles").append(innerHtml);
+                }
+                reader.onerror = function () {
+                    $("#DisplayFiles").append(filename);
+                    reader.abort();
+                }
+                reader.readAsDataURL(files[0]);
+            }
+        }
+        else {
+            var fileclass;
+            if ((files[index].type).match(/excel/i)) {
+                fileclass = "fa-file-excel-o";
+            } else if ((files[index].type).match(/image/i)) {
+                fileclass = "fa-file-image-o";
+            }
+            else if ((files[index].type).match(/pdf/i)) {
+                fileclass = "fa-file-pdf-o";
+            }
+            else if ((files[index].type).match(/word/i)) {
+                fileclass = "fa-file-word-o";
+            }
+            else if ((files[index].type).match(/(txt|text)/i)) {
+                fileclass = "fa-file-text-o";
+            }
+            else {
+                fileclass = "fa-file-o";
+            }
+            var innerHtml = "<div style='max-width:10em;'><p style='text-align:center;'><i class='fa " + fileclass + " fa-5x'></i><br/>" + filename + "</p></div>";
+            $("#DisplayFiles").append(innerHtml);
+        }
+    }
+}
