@@ -204,6 +204,7 @@
     <Content Include="App_Code\CustomValidations\MaxWordsAttribute.cs" />
     <Content Include="App_Code\DataAccess\MySqlConfiguration.cs" />
     <Content Include="App_Code\DataAccess\MySqlHistoryContext.cs" />
+    <Content Include="App_Code\DataAccess\ApplicationIdentityInitializer.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -230,6 +231,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Setup_Scripts.txt" />
+    <Content Include="Content\Css\bootstrap.css" />
+    <Content Include="Content\Css\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Css\site.css" />
+    <Content Include="Content\Css\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
     <Content Include="Content\Css\vs.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="favicon.ico" />
@@ -326,6 +335,10 @@
     <Content Include="Content\Less\variables.less" />
     <Content Include="Content\Less\main.less" />
     <Content Include="Content\Less\sidenav.less" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -394,6 +407,7 @@
     <Content Include="Views\CustomAttributes\Validation.cshtml" />
     <Content Include="Views\Javascripts\Index.cshtml" />
     <Content Include="Views\Home\GettingStarted.cshtml" />
+    <Content Include="Views\Shared\_DashboardLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,84 @@
+﻿
+@{
+    string ControllerName = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+    string ActionName = ViewContext.RouteData.Values["action"].ToString().ToLower();
+    string DashboardNavActive = ControllerName == "dashboard" ? "active" : string.Empty;
+    string IndexSideNavActive = ActionName == "index" ? "active-link" : string.Empty;
+    string EventSideNavActive = ActionName == "event" ? "active-link" : string.Empty;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Dashboard</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body class="dashboard-body">
+    <div class="navbar navbar-inverse">
+        <div class="container dashboard">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/Home/Index"><span class='glyphicon glyphicon-home'></span></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="@DashboardNavActive"><a href="~/Dashboard/Index"><span class='glyphicon glyphicon - dashboard'></span> Dashboard</a></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content dashboard">
+        <div class="dashboard-wrapper">
+            <div class="dashboard-inner-wrapper flex-columns">
+                <nav id="dashboard-nav-id" class="sidenav-wrapper">
+                    <div class="dashboard-toolbar">
+                        <button type="button" data-toggle="class" data-toggle-class="sidenav-full" data-element-id="dashboard-nav-id">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <ul class="sidenav-items">
+                        <li data-toggle="tooltip" title="toolbox" class="@IndexSideNavActive"><a href="~/Dashboard/Index"><span class="glyphicon glyphicon-dashboard"></span>Dashboard</a></li>
+                        <li data-toggle="tooltip" title="toolbox" class="@EventSideNavActive"><a href="~/Dashboard/Event"><span class="glyphicon glyphicon-calendar"></span>Events</a></li>
+                    </ul>
+                </nav>
+                <div class="dashboard-canvas-wrapper flex-columns flex-rows">
+                    <div class="dashboard-toolbar toolbar-border">
+                        <div class="toolbar-items-wrapper">
+                            @RenderSection("toolbar", required: true)
+                        </div>
+                    </div>
+                    <div class="dashboard-canvas">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-timeline">
+                <h1>This is the timeline portion</h1>
+            </div>
+        </div>
+        <hr />
+        <footer>
+            <p>&copy; 2015 - @DateTime.Now.Year - Mvc5Template</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/site")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

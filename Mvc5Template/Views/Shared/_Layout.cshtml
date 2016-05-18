@@ -1,4 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string ControllerName = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+    string ActionName = ViewContext.RouteData.Values["action"].ToString().ToLower();
+    //Now we set the active links or sublinks
+    string HomeLink = ActionName == "index" ? "active" : "";
+    string AboutLink = ActionName == "about" ? "active" : "";
+    string ContactLink = ActionName == "contact" ? "active" : "";
+    string AspNetLink = ControllerName == "Home" && ActionName == "gettingstarted" ? "active" : "";
+    //You get the idea
+    //Use the controller name if link has drop downs for the parent and action name for the selected child
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -10,7 +22,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,9 +34,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="@HomeLink"><a href="@Url.Action(actionName:"Index",controllerName:"Home")">Home</a></li>
+                    <li class="@AboutLink">@Html.ActionLink("About", "About", "Home")</li>
+                    <li class="@ContactLink">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="@AspNetLink"><a href="@Url.Action(actionName:"GettingStarted",controllerName:"Home")">Getting Started</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,7 +47,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; 2015 - @DateTime.Now.Year - My Template</p>
         </footer>
     </div>
 

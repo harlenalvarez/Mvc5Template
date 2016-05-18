@@ -27,6 +27,8 @@ namespace Mvc5Template.Models
         public ApplicationDbContext()
             : base("SiteConnection", throwIfV1Schema: false)
         {
+            //Database.SetInitializer(new DropCreateDatabaseAlways<ApplicationDbContext>());
+            Database.SetInitializer(new ApplicationIdentityInitializer());
         }
 
         public static ApplicationDbContext Create()

@@ -25,7 +25,7 @@
     });
 
     $('[data-toggle="tooltip"]').tooltip({
-        selector: '[data-toggle=tooltip',
+        selector: '[data-toggle="tooltip"]',
         placement: 'right',
         animated: 'fade',
         template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',

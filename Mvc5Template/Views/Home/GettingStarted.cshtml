@@ -143,7 +143,7 @@ pulic class ApplicationDbContext : IdentityDbContext&lt;ApplicationUser&gt;
     <fieldset>
         <legend>Client Side Compiler</legend>
         <ol>
-            <li>Make sure web compiler is installed</li>
+            <li>Make sure web compiler vs extension is installed</li>
             <li>Add Bootstrap.less and remove Bootstrap.css using Nuget</li>
             <li>Add into less site.less, main.less, dashboard.less,sidenav.less,variables.less.
                 <br/>
@@ -435,6 +435,7 @@ body{
 </code>
 </pre>
             </li>
+            <li>Right click any of the less files and you should see a web compile option. Run it to create the compilerconfig.json file and remove the css it create it.</li>
             <li>
                 Add to compilerconfig.json
                 <pre class="json">
@@ -457,6 +458,35 @@ body{
             <li>
                 Add Bootstrap.less and remove the css files
             </li>
+        </ol>
+    </fieldset>
+
+    <!--Add Dashboard _Layout-->
+    <fieldset>
+        <legend>Layouts</legend>
+        <ol>
+            <li>
+                Edit _Layout.cshtml - Add the following to keep track of active tabs
+                <br/>
+                <pre class="cs">
+<code>
+//Add to the very top
+@@{
+    string ControllerName = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+    string ActionName = ViewContext.RouteData.Values["action"].ToString().ToLower();
+    //Now we set the active links or sublinks 
+    string HomeLink = (ActionName == "index")?"active-link":"";
+    string AboutLink = (ActionName == "about")?"active-link":"";
+    string ContactLink = (ActionName == "contact")?"active-link":"";
+    //You get the idea
+    //Use the controller name if link has drop downs for the parent and action name for the selected child
+}
+</code>
+</pre>
+            <em>This is file rather long so if you want the file download it from GIT</em>
+            </li>
+
+            <li>Add _DashboardLayout.cshtml (Download from <a href="https://github.com/harlenalvarez/Mvc5Template">GitHub</a> if you want it)</li>
         </ol>
     </fieldset>
 </div>

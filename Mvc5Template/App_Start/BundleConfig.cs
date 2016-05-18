@@ -24,8 +24,8 @@ namespace Mvc5Template
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/Css/bootstrap.css",
+                      "~/Content/Css/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/highlight").Include(
                         "~/Scripts/highlight.pack.js"));
