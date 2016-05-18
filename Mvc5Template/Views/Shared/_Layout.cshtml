@@ -44,12 +44,13 @@
     <div class="body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; 2015 - @DateTime.Now.Year - My Template</p>
+        <footer class="container">
+            <p>&copy; 2015 - @DateTime.Now.Year My Template</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/highlight")
     @Scripts.Render("~/bundles/custom")
