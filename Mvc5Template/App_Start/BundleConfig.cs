@@ -34,7 +34,8 @@ namespace Mvc5Template
                       "~/Content/Css/vs.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/typeahead").Include(
-                      "~/Scripts/"
+                      "~/Scripts/typeahead.*",
+                      "~/Scripts/bloodhound.*"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(

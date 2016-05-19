@@ -126,22 +126,22 @@ $('[data-toggle="tooltip"]').tooltip({
         <em>Portion of this code comes from CSS-Tricks drag n drop example. <br/>I changed a few things and added the displayFiles preview</em>
         <ul class="nav nav-pills" role="tablist">
             <li role="presentation" class="active">
-                <a href="#html-dragndrop">HTML</a>
+                <a href="#html-dragndrop" data-toggle="tab" role="tab">HTML</a>
             </li>
             <li role="presentation">
-                <a href="#js-dragndrop">JS</a>
+                <a href="#js-dragndrop" data-toggle="tab" role="tab">JS</a>
             </li>
             <li role="presentation">
-                <a href="#css-dragndrop">CSS</a>
+                <a href="#css-dragndrop" data-toggle="tab" role="tab">CSS</a>
             </li>
             <li role="presentation">
-                <a href="#cs-dragndrop">C#</a>
+                <a href="#cs-dragndrop" data-toggle="tab" role="tab">C#</a>
             </li>
             <li role="presentation">
-                <a href="#php-dragndrop">PHP</a>
+                <a href="#php-dragndrop" data-toggle="tab" role="tab">PHP</a>
             </li>
             <li>
-                <a href="#result-dragndrop">Result</a>
+                <a href="#result-dragndrop" data-toggle="tab" role="tab">Result</a>
             </li>
         </ul>
         <div class="tab-content">
@@ -157,6 +157,7 @@ $('[data-toggle="tooltip"]').tooltip({
                             <input type="file" name="uploaded_files" id="uploaded_files" class="box__file"/>
                             <label for="uploaded_files"><strong><span class="box__file_upload">Choose a file</span></strong><span class="box__dragndrop"> or drag it here</span>.</label>
                         </div>
+                      
                     </div>
                     <div id="display_files"></div>
                     <p>
@@ -167,4 +168,8 @@ $('[data-toggle="tooltip"]').tooltip({
         </div>
     </div>
 </div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/typeahead")
+    }
 
