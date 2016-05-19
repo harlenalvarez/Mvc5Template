@@ -259,6 +259,7 @@ body.dashboard-body {
   position: relative;
   padding: 100px 20px;
   margin: auto;
+  text-align: center;
 }
 .box.has-advanced-upload {
   outline: 2px dashed #92b0b3;

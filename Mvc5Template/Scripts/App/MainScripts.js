@@ -1,6 +1,7 @@
-﻿$(function () {
-    //Global Vars
-    var DroppedFiles = false;
+﻿//Global Vars
+var DroppedFiles = false;
+$(function () {
+
 
     $("input[data-autocomplete-source]").each(function () {
         var target = $(this);
@@ -50,6 +51,7 @@
     $('[data-ajax="dragndrop"]').each(function () {
         var form = $(this);
         var dp = form.find(".box");
+        var displayE = dp.attr("data-display-on");
         if (Modernizr.draganddrop && window.FileReader) {
             var uploadLink = dp.find(".box__file_upload");
             dp.addClass("has-advanced-upload");
@@ -61,9 +63,9 @@
                 dp.addClass("is-dragover");
             }).on("dragleave dragend drop", function () {
                 dp.removeClass("is-dragover");
-            }).on("drop", function () {
+            }).on("drop", function (e) {
                 DroppedFiles = e.originalEvent.dataTransfer.files;
-                displayFiles(DroppedFiles);
+                displayFiles(displayE,DroppedFiles);
             });
         }
     });
@@ -95,6 +97,7 @@
                 processData: false
             }).done(function (data) {
                 showSuccess(data.msg);
+                DroppedFiles = null;
             }).fail(function (data) {
                 show(data.msg, data.err_type);
             }).always(function () {
@@ -103,13 +106,9 @@
 
         }
     });
-
-
-
-
 });
 
-var displayFiles = function (files) {
+var displayFiles = function (displayElement, files) {
 
     var filename;
     var filesize;
@@ -122,10 +121,12 @@ var displayFiles = function (files) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     innerHtml = "";
+                   
+                   
                     if (e.target.result.match(/application\/postscr/i)) {
-                        innerHtml = '<div class="epsPreview">EPS image: preview unavailable</div>';
+                        innerHtml = '<div class="epsPreview"><i class="glyphicon glyphicon-remove"></i>EPS image: preview unavailable</div>';
                     } else if (e.target.result.match(/image/i)) {
-                        innerHtml = "<img src='" + e.target.result + "' alt = '" + filename + "' style='max-height:100px'/>";
+                        innerHtml = "<div><i class='glyphicon glyphicon-remove' onclick='removeDroppedFile("+index+")'></i><img src='" + e.target.result + "' alt = '" + filename + "' style='max-height:100px'/></div>";
                     }
                     else if (e.target.result.match(/pdf/i)) {
                         innerHtml = document.createElement("iframe");
@@ -135,13 +136,14 @@ var displayFiles = function (files) {
                         innerHtml.setAttribute("frameborder", "0");
                         innerHtml.setAttribute("scrolling", "no");
                     }
+                    
                     else {
                         innerHtml = "<div style='max-width:10em;'><p style='text-align:center;'><i class='fa fa-file-text-o fa-5x'></i><br/>" + filename + "</p></div>";
                     }
-                    $("#DisplayFiles").append(innerHtml);
+                    $(displayElement).append(innerHtml);
                 }
                 reader.onerror = function () {
-                    $("#DisplayFiles").append(filename);
+                    $(displayElement).append(filename);
                     reader.abort();
                 }
                 reader.readAsDataURL(files[0]);
@@ -167,7 +169,11 @@ var displayFiles = function (files) {
                 fileclass = "fa-file-o";
             }
             var innerHtml = "<div style='max-width:10em;'><p style='text-align:center;'><i class='fa " + fileclass + " fa-5x'></i><br/>" + filename + "</p></div>";
-            $("#DisplayFiles").append(innerHtml);
+            $(displayElement).append(innerHtml);
         }
     }
+}
+
+var removeDroppedFile = function (fileIndex) {
+    DroppedFiles.splice(fileIndex, 1);
 }
